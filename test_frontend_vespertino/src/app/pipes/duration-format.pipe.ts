@@ -1,0 +1,18 @@
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'durationFormat'
+})
+export class DurationFormatPipe implements PipeTransform {
+  transform(value: any): string {
+    if (!value) return '';
+    
+    const parts = String(value).split(':');
+    if (parts.length < 2) return String(value);
+
+    const hours = parts[0];
+    const minutes = parts[1];
+
+    return `${hours}h ${minutes}m`;
+  }
+}
